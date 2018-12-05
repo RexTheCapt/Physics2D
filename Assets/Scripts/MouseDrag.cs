@@ -10,6 +10,7 @@ namespace Assets.Scripts
     public class MouseDrag : MonoBehaviour
     {
         public float DropVelocity = 5;
+        public bool isDraggable = false;
 
         private Vector3 _screenPoint;
         private Vector3 _offset;
@@ -25,15 +26,18 @@ namespace Assets.Scripts
         [UsedImplicitly]
         void OnMouseDown()
         {
-            _screenPoint = Camera.main.WorldToScreenPoint(transform.position);
-            _offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _screenPoint.z));
-            DisableDrag = false;
+            if (isDraggable)
+            {
+                _screenPoint = Camera.main.WorldToScreenPoint(transform.position);
+                _offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _screenPoint.z));
+                DisableDrag = false;
+            }
         }
 
         [UsedImplicitly]
         void OnMouseDrag()
         {
-            if (!DisableDrag)
+            if (!DisableDrag && isDraggable)
             {
                 Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, _screenPoint.z);
                 Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + _offset;
@@ -50,6 +54,7 @@ namespace Assets.Scripts
         void OnCollisionEnter(Collision collision)
         {
             Debug.Log(collision.gameObject.name);
+
             if(!DisableDrag)
                 transform.position = positionVector3[1];
             DisableDrag = true;

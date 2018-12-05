@@ -4,3 +4,4 @@
 - Mouse cursor can now interract with the game objects.
 - Some objects is now draggable.
 - CursorController ignores anything tagged with "Ball".
+- Added a boolean on draggable objects to disable the function.
