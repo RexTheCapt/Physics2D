@@ -19,8 +19,11 @@ namespace Assets.Scripts
 
                 if (Physics.Raycast(ray, out hit))
                 {
-                    Debug.Log(hit.transform.gameObject.name);
-                    Destroy(hit.transform.gameObject);
+                    if (hit.transform.gameObject.tag != "Ball")
+                    {
+                        Debug.Log(hit.transform.gameObject.name);
+                        Destroy(hit.transform.gameObject);
+                    }
                 }
             }
         }
