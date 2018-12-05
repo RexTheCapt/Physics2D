@@ -6,6 +6,3 @@
 
 - [x] Make the physics feel good.
 - [x] Make the balls spawn in with some color variation.
-- [ ] Fix a bug where you are able to drag stuff thru walls.
-- [ ] Add invisible walls.
-- [ ] Fix a bug where a ball thats spawns into something the coordinates gets reset to 0, 0, 0.
