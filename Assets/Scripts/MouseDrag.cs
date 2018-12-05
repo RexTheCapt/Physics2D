@@ -53,8 +53,6 @@ namespace Assets.Scripts
 
         void OnCollisionEnter(Collision collision)
         {
-            Debug.Log(collision.gameObject.name);
-
             if(!DisableDrag)
                 transform.position = positionVector3[1];
             DisableDrag = true;
