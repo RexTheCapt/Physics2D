@@ -5,6 +5,6 @@
 ## TODO
 
 - [x] Make the physics feel good.
-- [ ] Make the balls spawn in with some color variation.        [Branch: colorVariation]
+- [ ] Make the balls spawn in with some color variation.        [Current task]
 - [ ] Fix a bug where you are able to drag stuff thru walls.
 - [ ] Add invisible walls.
