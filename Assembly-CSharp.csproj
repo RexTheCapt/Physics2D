@@ -64,7 +64,6 @@
     <Compile Include="Assets\Scripts\ColorChange.cs" />
     <Compile Include="Assets\Scripts\CursorControl.cs" />
     <Compile Include="Assets\Scripts\MouseDrag.cs" />
-    <Compile Include="Assets\Scripts\PlatformRotationControl.cs" />
     <Compile Include="Assets\Scripts\PlayerMove.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/catjor30/Documents/unity/Physics2D/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
