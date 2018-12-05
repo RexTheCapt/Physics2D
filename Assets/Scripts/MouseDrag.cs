@@ -11,6 +11,8 @@ namespace Assets.Scripts
     {
         public float DropVelocity = 5;
         public bool IsDraggable = false;
+        public bool DoNotTouchTransform = false;
+        public bool UseVelocity = true;
 
         private Vector3 _screenPoint;
         private Vector3 _offset;
@@ -20,9 +22,12 @@ namespace Assets.Scripts
         [UsedImplicitly]
         void Start()
         {
-            for (int i = 0; i < _positionVector3.Length; i++)
+            if (!DoNotTouchTransform)
             {
-                _positionVector3[i] = transform.position;
+                for (int i = 0; i < _positionVector3.Length; i++)
+                {
+                    _positionVector3[i] = transform.position;
+                }
             }
         }
 
@@ -32,8 +37,11 @@ namespace Assets.Scripts
         [UsedImplicitly]
         void Update()
         {
-            _positionVector3[1] = _positionVector3[0];
-            _positionVector3[0] = transform.position;
+            if (!DoNotTouchTransform)
+            {
+                _positionVector3[1] = _positionVector3[0];
+                _positionVector3[0] = transform.position;
+            }
         }
 
         /// <summary>
@@ -63,7 +71,7 @@ namespace Assets.Scripts
                 transform.position = curPosition;
 
                 Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-                if (rb)
+                if (rb && UseVelocity)
                 {
                     rb.velocity = (_positionVector3[0] - _positionVector3[1]) * DropVelocity;
                 }
@@ -77,9 +85,12 @@ namespace Assets.Scripts
         [UsedImplicitly]
         void OnCollisionEnter(Collision collision)
         {
-            if (!_disableDrag)
-                transform.position = _positionVector3[1];
-            _disableDrag = true;
+            if (!DoNotTouchTransform)
+            {
+                if (!_disableDrag)
+                    transform.position = _positionVector3[1];
+                _disableDrag = true;
+            }
         }
     }
 }
