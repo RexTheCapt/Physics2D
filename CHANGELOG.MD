@@ -3,4 +3,4 @@
 - Initial commit.
 - Mouse cursor can now interract with the game objects.
 - Some objects is now draggable.
-- CursorController ignores anything tagged with "Ball"
+- CursorController ignores anything tagged with "Ball".
