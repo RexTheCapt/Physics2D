@@ -34,29 +34,28 @@ namespace Assets.Scripts
         /// <summary>
         /// Called every frame.
         /// </summary>
-        [UsedImplicitly]                                                        // Tell ReSharper this function is in use.
+        [UsedImplicitly]
         private void Update()
         {
-            CharacterController character = gameObject.GetComponent<CharacterController>();     // get character controller.
+            CharacterController character = gameObject.GetComponent<CharacterController>();
 
-            if (!character.isGrounded)                                                          // Check if player is grounded
+            if (!character.isGrounded)
             {
-                _downForce += gravityForce * Time.deltaTime;                                    // Increase the down force.
+                _downForce += gravityForce * Time.deltaTime;
 
-                if (_downForce > downForceMax)                                                  // If down force is higher than max down force,
-                    _downForce = downForceMax;                                                  // Then set down force to max down force.
+                if (_downForce > downForceMax)
+                    _downForce = downForceMax;
             }
             else
             {
-                _downForce = 0;                                                                 // Set down force to 0.
+                _downForce = 0;
 
-                if (Input.GetKey(_jumpCode))                                                    // Check if player wants to jump.
+                if (Input.GetKey(_jumpCode))
                 {
-                    _downForce = 0 - JumpSpeed;                                                 // Let the player jump.
+                    _downForce = 0 - JumpSpeed;
                 }
             }
-
-                                                                                                // Move the player.
+            
             character.Move(new Vector3(GetButton(_moveRightCode, _moveLeftCode) * Time.deltaTime * MovementSpeed, 0 - _downForce, 0));
         }
 
@@ -68,17 +67,17 @@ namespace Assets.Scripts
         /// <returns>Pos : 1f, Def : 0f, Neg : -1f</returns>
         private float GetButton(KeyCode positive, KeyCode negative)
         {
-            if (Input.GetKey(positive)) // Check if forward is pressed.
+            if (Input.GetKey(positive))
             {
-                return 1f;              // Return positive
+                return 1f;
             }
 
-            if (Input.GetKey(negative)) // Check if backward is pressed.
+            if (Input.GetKey(negative))
             {
-                return -1f;             // Return negative.
+                return -1f;
             }
 
-            return 0;                   // Return zero.
+            return 0;
         }
     }
 }
