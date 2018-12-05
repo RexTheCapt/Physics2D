@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 135489757676529262}
   - component: {fileID: 54175935869202466}
   - component: {fileID: 114729822946204680}
+  - component: {fileID: 114015453409465616}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Ball
@@ -101,6 +102,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114015453409465616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1461604157978990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccda5df6755ea7d46b2976bf505105b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114729822946204680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DropVelocity: 10
+  IsDraggable: 0
 --- !u!135 &135489757676529262
 SphereCollider:
   m_ObjectHideFlags: 1
