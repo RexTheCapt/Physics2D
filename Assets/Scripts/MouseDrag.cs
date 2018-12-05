@@ -9,16 +9,13 @@ namespace Assets.Scripts
 {
     public class MouseDrag : MonoBehaviour
     {
-        // ReSharper disable once MemberCanBePrivate.Global
-        public float DropVelocity = 5;                                              // When object is no longer being dragged this force is applied.
-        // ReSharper disable once MemberCanBePrivate.Global
-        public bool IsDraggable = false;                                            // Toggle if object can be dragged or not.
+        public float DropVelocity = 5;
+        public bool IsDraggable = false;
 
-        private Vector3 _screenPoint;                                               // Stores transformed position from world space into screen space.
-        private Vector3 _offset;                                                    // Offset for dragging the object.
-        // ReSharper disable once FieldCanBeMadeReadOnly.Local
-        private Vector3[] _positionVector3 = new Vector3[2];                         // Store current and last position of object.
-        private bool _disableDrag;                                                  // A boolean to disable dragging if something happens.
+        private Vector3 _screenPoint;
+        private Vector3 _offset;
+        private Vector3[] _positionVector3 = new Vector3[2];
+        private bool _disableDrag;
 
         [UsedImplicitly]
         void Start()
@@ -32,46 +29,42 @@ namespace Assets.Scripts
         /// <summary>
         /// Runs every frame.
         /// </summary>
-        [UsedImplicitly]                                                            // Tell ReSharper this function is in use.
+        [UsedImplicitly]
         void Update()
         {
-            _positionVector3[1] = _positionVector3[0];                                // Change current position to last position.
-            _positionVector3[0] = transform.position;                                // Store current position.
+            _positionVector3[1] = _positionVector3[0];
+            _positionVector3[0] = transform.position;
         }
 
         /// <summary>
         /// Called when mouse button is clicked on object.
         /// </summary>
-        [UsedImplicitly]                                                        // Tell ReSharper this function is in use.
+        [UsedImplicitly]
         void OnMouseDown()
         {
-            if (IsDraggable)                                                        // If object is draggable then run this block.
+            if (IsDraggable)
             {
-                _screenPoint = Camera.main.WorldToScreenPoint(transform.position);  // Store where player clicked on the screen.
-                                                                                    // Create an offset relative to the camera and object.
+                _screenPoint = Camera.main.WorldToScreenPoint(transform.position);
                 _offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _screenPoint.z));
-                _disableDrag = false;                                                // Make sure value is true.
+                _disableDrag = false;
             }
         }
 
         /// <summary>
         /// Called every frame if mouse button is not released.
         /// </summary>
-        [UsedImplicitly]                                                        // Tell ReSharper this function is in use.
+        [UsedImplicitly]
         void OnMouseDrag()
         {
-            if (!_disableDrag && IsDraggable)                                        // Check if object can be dragged.
+            if (!_disableDrag && IsDraggable)
             {
-                                                                                    // Store current mouse position.
                 Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, _screenPoint.z);
-                                                                                    // Add offset to current mouse position.
                 Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + _offset;
-                transform.position = curPosition;                                   // Set object position to mouse position.
+                transform.position = curPosition;
 
-                Rigidbody rb = gameObject.GetComponent<Rigidbody>();                // Get rigidbody from object.
-                if (rb)                                                             // Check if rigidbody exists.
+                Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+                if (rb)
                 {
-                                                                                    // Set the velocity.
                     rb.velocity = (_positionVector3[0] - _positionVector3[1]) * DropVelocity;
                 }
             }
@@ -81,12 +74,12 @@ namespace Assets.Scripts
         /// Called when object is colliding with an another object.
         /// </summary>
         /// <param name="collision"></param>
-        [UsedImplicitly]                                                             // Tell ReSharper this function is in use.
+        [UsedImplicitly]
         void OnCollisionEnter(Collision collision)
         {
-            if (!_disableDrag)                                                       // Check if value is false.
-                transform.position = _positionVector3[1];                             // Transform object to last position.
-            _disableDrag = true;                                                     // Disable dragging.
+            if (!_disableDrag)
+                transform.position = _positionVector3[1];
+            _disableDrag = true;
         }
     }
 }
