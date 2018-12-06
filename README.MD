@@ -4,5 +4,5 @@
 
 ## TODO
 
-- [x] Make the physics feel good.
-- [x] Make the balls spawn in with some color variation.
+[Link to TODO list](https://github.com/RexTheCapt/Physics2D/projects/1)
+https://github.com/RexTheCapt/Physics2D/projects/1
