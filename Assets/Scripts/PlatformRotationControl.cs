@@ -10,12 +10,16 @@ namespace Assets.Scripts
     public class PlatformRotationControl : MonoBehaviour
     {
         // ReSharper disable once MemberCanBePrivate.Global
-        public Transform TargetTransform;
+        [UsedImplicitly] public Transform TargetTransform;
+        [UsedImplicitly] public GameObject RotatoryGameObject;
+        public bool Active = false;
 
         [UsedImplicitly]
         void Update()
         {
             transform.LookAt(TargetTransform);
+
+            RotatoryGameObject.SetActive(Active);
         }
     }
 }
