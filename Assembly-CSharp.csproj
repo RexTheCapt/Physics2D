@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\CameraPan.cs" />
     <Compile Include="Assets\Scripts\ColorChange.cs" />
     <Compile Include="Assets\Scripts\CursorControl.cs" />
+    <Compile Include="Assets\Scripts\ExitGame.cs" />
     <Compile Include="Assets\Scripts\MouseDrag.cs" />
     <Compile Include="Assets\Scripts\PlatformRotationControl.cs" />
     <Compile Include="Assets\Scripts\PlayerMove.cs" />
