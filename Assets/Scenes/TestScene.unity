@@ -754,7 +754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0df21a6383a1a848a22e71faa8570fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitTime: 1
+  ExitTime: 5
   QuitText: {fileID: 271096880}
 --- !u!1001 &1251922830
 Prefab:
