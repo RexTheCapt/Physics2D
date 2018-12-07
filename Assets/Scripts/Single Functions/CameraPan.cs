@@ -5,7 +5,7 @@ using UnityEngine;
 
 #endregion
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Single_Functions
 {
     public class CameraPan : MonoBehaviour
     {

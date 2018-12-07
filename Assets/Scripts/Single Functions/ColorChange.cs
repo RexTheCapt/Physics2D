@@ -6,7 +6,7 @@ using Random = System.Random;
 
 #endregion
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Single_Functions
 {
     public class ColorChange : MonoBehaviour
     {
