@@ -795,19 +795,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4568621531700358, guid: 3c635215af1aa5d469b9c385aba8fc6e, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4568621531700358, guid: 3c635215af1aa5d469b9c385aba8fc6e, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 20360852710864288, guid: 3c635215af1aa5d469b9c385aba8fc6e,
-        type: 2}
-      propertyPath: orthographic size
-      value: 15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c635215af1aa5d469b9c385aba8fc6e, type: 2}
   m_IsPrefabAsset: 0
