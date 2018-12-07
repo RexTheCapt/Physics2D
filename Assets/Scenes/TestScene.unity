@@ -1058,11 +1058,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114286111744132592, guid: cfb626cc5c6282043bb3e46011748fc1,
-        type: 2}
-      propertyPath: timer
-      value: -10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfb626cc5c6282043bb3e46011748fc1, type: 2}
   m_IsPrefabAsset: 0
