@@ -61,15 +61,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CameraPan.cs" />
-    <Compile Include="Assets\Scripts\ColorChange.cs" />
-    <Compile Include="Assets\Scripts\ColorPulsing.cs" />
     <Compile Include="Assets\Scripts\CursorControl.cs" />
-    <Compile Include="Assets\Scripts\ExitGame.cs" />
-    <Compile Include="Assets\Scripts\MinimapCrossOptions.cs" />
+    <Compile Include="Assets\Scripts\GoalScript.cs" />
     <Compile Include="Assets\Scripts\MouseDrag.cs" />
-    <Compile Include="Assets\Scripts\PlatformRotationControl.cs" />
     <Compile Include="Assets\Scripts\PlayerMove.cs" />
+    <Compile Include="Assets\Scripts\Single Functions\CameraPan.cs" />
+    <Compile Include="Assets\Scripts\Single Functions\ColorChange.cs" />
+    <Compile Include="Assets\Scripts\Single Functions\ColorPulsing.cs" />
+    <Compile Include="Assets\Scripts\Single Functions\ExitGame.cs" />
+    <Compile Include="Assets\Scripts\Single Functions\MinimapCrossOptions.cs" />
+    <Compile Include="Assets\Scripts\Single Functions\PlatformRotationControl.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/catjor30/Documents/unity/Physics2D/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
