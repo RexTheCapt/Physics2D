@@ -125,7 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DropVelocity: 10
-  IsDraggable: 0
+  IsDraggable: 1
+  DoNotTouchTransform: 0
+  UseVelocity: 1
 --- !u!135 &135489757676529262
 SphereCollider:
   m_ObjectHideFlags: 1

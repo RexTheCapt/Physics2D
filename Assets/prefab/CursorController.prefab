@@ -51,3 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9fbf30330321342966f5e3730f895d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blacklistNames:
+  - DirectionPointer

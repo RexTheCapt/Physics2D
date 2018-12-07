@@ -31,10 +31,12 @@ public class ExitGame : MonoBehaviour
         }
         else if (timer > 0)
         {
+            QuitText.enabled = true;
             QuitText.color = new Color(255, 255, 255, timer / exitTime);
         }
         else if (timer < 0)
         {
+            QuitText.enabled = false;
             timer = 0;
         }
     }
