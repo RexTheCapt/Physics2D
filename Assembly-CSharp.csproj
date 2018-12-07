@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraPan.cs" />
     <Compile Include="Assets\Scripts\ColorChange.cs" />
+    <Compile Include="Assets\Scripts\ColorPulsing.cs" />
     <Compile Include="Assets\Scripts\CursorControl.cs" />
     <Compile Include="Assets\Scripts\ExitGame.cs" />
     <Compile Include="Assets\Scripts\MinimapCrossOptions.cs" />
