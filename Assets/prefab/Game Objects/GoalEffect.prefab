@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33004694809229730}
   - component: {fileID: 23441141146797236}
   - component: {fileID: 65338294784206432}
-  - component: {fileID: 114694172076733390}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -38,6 +37,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4708996744713796}
+  - component: {fileID: 114174826425379242}
   m_Layer: 0
   m_Name: GoalEffect
   m_TagString: Untagged
@@ -64,7 +64,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054547122941344}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -126,14 +126,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114694172076733390
+--- !u!114 &114174826425379242
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1028991821556604}
+  m_GameObject: {fileID: 1054547122941344}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9e6829110f560448bf487e800e49ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deltaTime: 0
+  MaxScale: 1.2
+  MinScale: 1
+  Speed: 2
+  Stage: 0
