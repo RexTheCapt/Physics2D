@@ -12,6 +12,7 @@ namespace Assets.Scripts.Single_Functions
         private bool _fadeUp = true;
         public float Timer;
         public float TimerMin = 0f;
+        public float TimerMid = -1f;
         public float TimerMax = 5f;
 
         [UsedImplicitly]
@@ -24,7 +25,12 @@ namespace Assets.Scripts.Single_Functions
             else
                 Timer -= Time.deltaTime;
 
-            if (Timer > TimerMax)
+            if (TimerMid > TimerMin && Timer > TimerMin)
+            {
+                if (Timer > TimerMid)
+                    _fadeUp = false;
+            }
+            else if (Timer > TimerMax)
                 _fadeUp = false;
             else if (Timer < TimerMin)
                 _fadeUp = true;
