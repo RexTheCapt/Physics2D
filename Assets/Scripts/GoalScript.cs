@@ -1,7 +1,7 @@
 ﻿#region Usings
 
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 #endregion
 
@@ -9,18 +9,38 @@ namespace Assets.Scripts
 {
     public class GoalScript : MonoBehaviour
     {
-        public int requiredWins = 1;
-        public int currentWins = 0;
+        public GameObject GoalEffectGameObject;
+        public int CurrentWins;
+        public int RequiredWins = 1;
+        public bool AddGoal;
 
-        void OnTriggerEnter(Collider collision)
+        private void Update()
         {
-            string tag = collision.gameObject.tag;
-
-            if (tag == "Ball")
+            if (AddGoal)
             {
-                currentWins++;
-                Destroy(collision.gameObject);
+                AddGoal = false;
+                Goal(new GameObject("tmp").AddComponent<BoxCollider>().GetComponent<Collider>());
             }
+        }
+
+        [UsedImplicitly]
+        private void OnTriggerEnter(Collider collision)
+        {
+            string colTag = collision.gameObject.tag;
+
+            if (colTag == "Ball")
+            {
+                AddGoal = false;
+                Goal(collision);
+            }
+        }
+
+        private void Goal(Collider collision)
+        {
+            CurrentWins++;
+            Destroy(collision.gameObject);
+            GameObject objectInstantiate = Instantiate(GoalEffectGameObject);
+            objectInstantiate.transform.position = gameObject.transform.position;
         }
     }
 }
