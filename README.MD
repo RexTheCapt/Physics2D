@@ -1,7 +1,5 @@
 # Physics2D
 
-[changelog](CHANGELOG.MD)
-
 ## How to setup your own environment to code
 
 ### Tools I use when coding
