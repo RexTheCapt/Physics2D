@@ -137,6 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer: 0
-  TimerMin: 0.5
-  TimerMid: 2.5
-  TimerMax: 5
+  TimerMin: 0
+  TimerMid: -1
+  TimerMax: 0.1
