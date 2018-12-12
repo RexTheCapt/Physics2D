@@ -39,9 +39,13 @@ namespace Assets.Scripts
         private void Goal(Collider collision)
         {
             CurrentWins++;
-            Destroy(collision.gameObject);
             GameObject objectInstantiate = Instantiate(GoalEffectGameObject);
             objectInstantiate.transform.position = gameObject.transform.position;
+
+            objectInstantiate.GetComponent<GoalEffectScript>().ChildGameObject.GetComponent<Renderer>().material =
+                collision.gameObject.GetComponent<Renderer>().material;
+
+            Destroy(collision.gameObject);
         }
     }
 }
