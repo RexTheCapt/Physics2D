@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿#region usings
+
 using UnityEngine;
 
-public class DangerScript : MonoBehaviour {
+#endregion
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+namespace Assets.Scripts
+{
+    public class DangerScript : MonoBehaviour
+    {
+
+    }
 }

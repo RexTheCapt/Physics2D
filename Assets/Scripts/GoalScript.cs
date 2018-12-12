@@ -14,6 +14,7 @@ namespace Assets.Scripts
         public int RequiredWins = 1;
         public bool AddGoal;
 
+        [UsedImplicitly]
         private void Update()
         {
             if (AddGoal)

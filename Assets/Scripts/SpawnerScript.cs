@@ -1,67 +1,71 @@
-﻿#region Usings
+﻿#region usings
 
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+// ReSharper disable MemberCanBePrivate.Global
 
 #endregion
 
-public class SpawnerScript : MonoBehaviour
+namespace Assets.Scripts
 {
-    public GameObject SphereGameObject;
-    public bool IgnoreCollision = false;
-    public bool CollisionResetTimer = false;
-    public float SpawnTimer = 5f;
-    private float MinSpawnTimer = 0.05f;
-
-    public float Timer;
-    public List<Collider> collisions = new List<Collider>();
-
-    void Update()
+    public class SpawnerScript : MonoBehaviour
     {
-        Timer += Time.deltaTime;
+        private readonly float MinSpawnTimer = 0.05f;
+        private List<Collider> Collisions = new List<Collider>();
 
-        if (SpawnTimer < MinSpawnTimer)
-            SpawnTimer = MinSpawnTimer;
+        public bool CollisionResetTimer = false;
+        public bool IgnoreCollision = false;
+        public float SpawnTimer = 5f;
+        public float Timer;
+        [UsedImplicitly] public GameObject SphereGameObject;
 
-        if (Timer >= SpawnTimer)
+        [UsedImplicitly]
+        private void Update()
         {
-            if (IgnoreCollision)
+            Timer += Time.deltaTime;
+
+            if (SpawnTimer < MinSpawnTimer)
+                SpawnTimer = MinSpawnTimer;
+
+            if (Timer >= SpawnTimer)
             {
-                SpawnObject();
-            }
-            else if (!IgnoreCollision && collisions.Count == 0)
-            {
-                SpawnObject();
+                if (IgnoreCollision)
+                    SpawnObject();
+                else if (!IgnoreCollision && Collisions.Count == 0) SpawnObject();
             }
         }
-    }
 
-    private void SpawnObject()
-    {
-        GameObject instantiate = Instantiate(SphereGameObject);
-        instantiate.transform.position = transform.position;
-        Timer = 0;
-        Debug.Log("Object spawned");
-    }
-
-    void OnTriggerEnter(Collider collision)
-    {
-        collisions.Add(collision);
-        Debug.Log("Collision added");
-    }
-
-    void OnTriggerStay(Collider collision)
-    {
-        if (CollisionResetTimer)
+        private void SpawnObject()
         {
-            Timer = 0f;
-            Debug.Log("Timer reset");
+            var instantiate = Instantiate(SphereGameObject);
+            instantiate.transform.position = transform.position;
+            Timer = 0;
+            Debug.Log("Object spawned");
         }
-    }
 
-    void OnTriggerExit(Collider collision)
-    {
-        collisions.Remove(collision);
-        Debug.Log("Collision removed");
+        [UsedImplicitly]
+        private void OnTriggerEnter(Collider collision)
+        {
+            Collisions.Add(collision);
+            Debug.Log("Collision added");
+        }
+
+        [UsedImplicitly]
+        private void OnTriggerStay(Collider collision)
+        {
+            if (CollisionResetTimer)
+            {
+                Timer = 0f;
+                Debug.Log("Timer reset");
+            }
+        }
+
+        [UsedImplicitly]
+        private void OnTriggerExit(Collider collision)
+        {
+            Collisions.Remove(collision);
+            Debug.Log("Collision removed");
+        }
     }
 }
