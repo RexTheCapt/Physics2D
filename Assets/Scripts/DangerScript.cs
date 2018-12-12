@@ -8,7 +8,7 @@ namespace Assets.Scripts
 {
     public class DangerScript : MonoBehaviour
     {
-        void OnCollisionEnter(Collision collision)
+        void OnTriggerEnter(Collider collision)
         {
             Destroy(collision.gameObject);
         }
