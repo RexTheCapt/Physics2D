@@ -10,7 +10,10 @@ namespace Assets.Scripts
     {
         void OnTriggerEnter(Collider collision)
         {
-            Destroy(collision.gameObject);
+            if (collision.gameObject.tag == "Ball")
+            {
+                Destroy(collision.gameObject);
+            }
         }
     }
 }
