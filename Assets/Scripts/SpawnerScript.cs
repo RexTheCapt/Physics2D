@@ -47,7 +47,10 @@ namespace Assets.Scripts
         [UsedImplicitly]
         private void OnTriggerEnter(Collider collision)
         {
-            Collisions.Add(collision);
+            if (collision.gameObject.tag != "Wall")
+            {
+                Collisions.Add(collision);
+            }
         }
 
         [UsedImplicitly]
