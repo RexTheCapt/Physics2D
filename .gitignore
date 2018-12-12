@@ -4,6 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 [Ll]ocal[Ss]cenes*
+Assets/Scenes/[Ll]ocal[Ss]cenes.meta
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
