@@ -11,6 +11,8 @@ namespace Assets.Scripts
     {
         [SerializeField]
         private float _deltaTime;
+
+        public GameObject ChildGameObject;
         public float MaxScale = 2f;
         public float MinScale = 1f;
         public float Speed = 1f;
