@@ -50,3 +50,49 @@ ReSharper is not required at all, it's an extension to Visual Studio that let's 
 I am using VSC for lightweight text editing and as my standard text editor for everything on my systems. Starts faster than VS and is able to do some basic scripting/coding, but VS is still superrior when it comes to C# and unity. VSC can still do stuff that VS can't and the other way arround. Everytime i look at this image i took, it reminds me about inception. I wonder why...
 
 #### GitHub
+
+![Screenshot off GitHub](Images/GitHubScreenShot&#32;121218.png)
+
+Do I really need to explain GitHub? You already have been on the website.
+
+#### GitHub Desktop
+
+![Screenshot off GitHub Desktop](Images/GitHubDesktopScreenShot&#32;121218.jpg)
+
+This program is what I use to upload changes I have made so you can do whatever you want to do.
+### How to install these stuff
+
+It depends on what you are planning to do, just build and run the code or do you wan't to edit them? Whatever the case is let's start with the basics.
+
+#### Installing Unity and VS
+
+When installing unity it automatically installs Visual Studio for you so no need to download that program, but if you do you can change what VS can do or remove some features.
+
+##### To install Unity and VS
+- [Go to they're download page](https://unity3d.com/get-unity/download) 
+- Press the button **Choose your Unity + download**.
+- Choose your version *(I am using personal)*.
+- Accept the terms then download.
+- Launch the program you download and just click next all the way.
+
+When the installation is done you are ready to start coding.
+
+##### How to run the code
+
+- Go to the [repository](https://github.com/RexTheCapt/Physics2D/tree/master) where the code is located.
+  - If you already on in the [repository](https://github.com/RexTheCapt/Physics2D/tree/master) then go to the top.
+- Find the green button **Clone or download** and press it then **Download ZIP**.
+- Unzip the file you downloaded to anywhere.
+  - You can use programs like [7Zip](https://www.7-zip.org/) or [WinRAR](https://www.rarlab.com/download.htm) to unzip the file.
+- Open Unity.
+- Click **Open**.
+  - If this is the first time you open Unity you probably need to go thru the setup process.
+- Go into the folder you extracted the files to.
+- Click **Select folder**
+- When unity is done loading then press **CTRL+B** and choose where to build the codes.
+  - I usually create a new folder named **Builds** right in the project and build it there.
+- Go to where you buildt the code and start the game.
+
+##### How to create games in Unity
+
+I am not going to sit here for hours to write how to create a game in Unity. I am too lazy and I do not have the skills for that. [Here is a video](https://www.youtube.com/watch?v=IlKaB1etrik)!
