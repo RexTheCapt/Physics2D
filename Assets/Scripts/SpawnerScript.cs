@@ -42,14 +42,12 @@ namespace Assets.Scripts
             var instantiate = Instantiate(SphereGameObject);
             instantiate.transform.position = transform.position + OffsetVector3;
             Timer = 0;
-            Debug.Log("Object spawned");
         }
 
         [UsedImplicitly]
         private void OnTriggerEnter(Collider collision)
         {
             Collisions.Add(collision);
-            Debug.Log("Collision added");
         }
 
         [UsedImplicitly]
@@ -58,7 +56,6 @@ namespace Assets.Scripts
             if (CollisionResetTimer)
             {
                 Timer = 0f;
-                Debug.Log("Timer reset");
             }
         }
 
@@ -66,7 +63,6 @@ namespace Assets.Scripts
         private void OnTriggerExit(Collider collision)
         {
             Collisions.Remove(collision);
-            Debug.Log("Collision removed");
         }
     }
 }
