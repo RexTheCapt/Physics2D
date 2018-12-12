@@ -35,6 +35,15 @@ namespace Assets.Scripts
                     SpawnObject();
                 else if (!IgnoreCollision && Collisions.Count == 0) SpawnObject();
             }
+
+            for (int i = Collisions.Count - 1; i > 0; i--)
+            {
+                if (Collisions[i] == null)
+                {
+                    Debug.Log(i);
+                    Collisions.Remove(Collisions[i]);
+                }
+            }
         }
 
         private void SpawnObject()
