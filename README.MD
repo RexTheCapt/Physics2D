@@ -96,3 +96,5 @@ When the installation is done you are ready to start coding.
 ##### How to create games in Unity
 
 I am not going to sit here for hours to write how to create a game in Unity. I am too lazy and I do not have the skills for that. [Here is a video](https://www.youtube.com/watch?v=IlKaB1etrik)!
+
+[![An image should have been here](https://img.youtube.com/vi/IlKaB1etrik/0.jpg)](https://www.youtube.com/watch?v=IlKaB1etrik)
