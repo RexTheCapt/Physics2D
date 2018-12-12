@@ -12,13 +12,14 @@ namespace Assets.Scripts
     public class SpawnerScript : MonoBehaviour
     {
         private readonly float MinSpawnTimer = 0.05f;
-        private List<Collider> Collisions = new List<Collider>();
 
+        public Vector3 OffsetVector3;
         public bool CollisionResetTimer = false;
         public bool IgnoreCollision = false;
         public float SpawnTimer = 5f;
         public float Timer;
         [UsedImplicitly] public GameObject SphereGameObject;
+        [SerializeField] private List<Collider> Collisions = new List<Collider>();
 
         [UsedImplicitly]
         private void Update()
@@ -39,7 +40,7 @@ namespace Assets.Scripts
         private void SpawnObject()
         {
             var instantiate = Instantiate(SphereGameObject);
-            instantiate.transform.position = transform.position;
+            instantiate.transform.position = transform.position + OffsetVector3;
             Timer = 0;
             Debug.Log("Object spawned");
         }
