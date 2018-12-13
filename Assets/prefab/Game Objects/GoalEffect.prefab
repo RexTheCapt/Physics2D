@@ -138,7 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deltaTime: 0
-  MaxScale: 1.2
+  ChildGameObject: {fileID: 1028991821556604}
+  MaxScale: 2
   MinScale: 1
-  Speed: 2
+  Speed: 10
   Stage: 0

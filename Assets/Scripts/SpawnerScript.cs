@@ -35,6 +35,15 @@ namespace Assets.Scripts
                     SpawnObject();
                 else if (!IgnoreCollision && Collisions.Count == 0) SpawnObject();
             }
+
+            for (int i = Collisions.Count - 1; i > 0; i--)
+            {
+                if (Collisions[i] == null)
+                {
+                    Debug.Log(i);
+                    Collisions.Remove(Collisions[i]);
+                }
+            }
         }
 
         private void SpawnObject()
@@ -42,14 +51,15 @@ namespace Assets.Scripts
             var instantiate = Instantiate(SphereGameObject);
             instantiate.transform.position = transform.position + OffsetVector3;
             Timer = 0;
-            Debug.Log("Object spawned");
         }
 
         [UsedImplicitly]
         private void OnTriggerEnter(Collider collision)
         {
-            Collisions.Add(collision);
-            Debug.Log("Collision added");
+            if (collision.gameObject.tag != "Wall")
+            {
+                Collisions.Add(collision);
+            }
         }
 
         [UsedImplicitly]
@@ -58,7 +68,6 @@ namespace Assets.Scripts
             if (CollisionResetTimer)
             {
                 Timer = 0f;
-                Debug.Log("Timer reset");
             }
         }
 
@@ -66,7 +75,6 @@ namespace Assets.Scripts
         private void OnTriggerExit(Collider collision)
         {
             Collisions.Remove(collision);
-            Debug.Log("Collision removed");
         }
     }
 }
