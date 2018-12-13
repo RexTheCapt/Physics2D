@@ -266,7 +266,7 @@ Prefab:
   m_IsPrefabAsset: 0
 --- !u!114 &271096880 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114399230957400292, guid: 0ec406022833a67409431541beeb5b56,
+  m_CorrespondingSourceObject: {fileID: 114563751034029842, guid: 0ec406022833a67409431541beeb5b56,
     type: 2}
   m_PrefabInternal: {fileID: 638480538}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -484,6 +484,15 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224351220663722324, guid: 0ec406022833a67409431541beeb5b56,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154425124193380, guid: 0ec406022833a67409431541beeb5b56, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ec406022833a67409431541beeb5b56, type: 2}
   m_IsPrefabAsset: 0
@@ -665,6 +674,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResetKeyCode: 114
+  ResetTextGameObject: {fileID: 1613986326}
+  resetTimeMax: 1
+  resetTime: 0
+  resetInitiated: 0
   parents:
     BallParent: {fileID: 234868862}
     SpawnerParent: {fileID: 1519996993}
@@ -856,6 +869,11 @@ Transform:
   m_Father: {fileID: 1182389142}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1613986326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1285970366513452, guid: 0ec406022833a67409431541beeb5b56,
+    type: 2}
+  m_PrefabInternal: {fileID: 638480538}
 --- !u!4 &1614851866 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4470919129125670, guid: cfb626cc5c6282043bb3e46011748fc1,
