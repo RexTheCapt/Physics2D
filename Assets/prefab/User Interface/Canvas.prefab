@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222120170184631368}
   - component: {fileID: 114113669177614060}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Level map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
