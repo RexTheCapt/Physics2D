@@ -3,6 +3,7 @@
 using System;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
 
 #endregion
 
@@ -11,6 +12,13 @@ namespace Assets.Scripts
     public class GameControl : MonoBehaviour
     {
         public KeyCode ResetKeyCode = KeyCode.R;
+        public GameObject ResetTextGameObject;
+        public float resetTimeMax = 5f;
+
+        public float resetTime;
+        public bool resetInitiated = false;
+
+        #region Private classes
 
         // Parents
         [Serializable]
@@ -69,15 +77,49 @@ namespace Assets.Scripts
             }
         }
 
+            #endregion
+
         // Update is called once per frame
         [UsedImplicitly]
         private void Update()
         {
-            if (Input.GetKeyDown(ResetKeyCode))
+            if (Input.GetKey(ResetKeyCode))
             {
+                resetTime += Time.deltaTime;
+            }
+            else
+            {
+                resetTime -= Time.deltaTime;
+            }
+
+            if (resetTime < 0)
+            {
+                resetTime = 0;
+                ResetTextGameObject.SetActive(false);
+            }
+
+            if (resetTime > resetTimeMax && !resetInitiated)
+            {
+                resetTime = resetTimeMax + 0.001f;
+
+                resetInitiated = true;
+
+                ResetTextGameObject.GetComponent<Text>().color = new Color(1, 0, 0, 1);
+
                 ResetGameObjects(GameObject.FindGameObjectsWithTag("Ball"), copyObjects.BallGameObjects, parents.BallParent);
                 ResetGameObjects(GameObject.FindGameObjectsWithTag("Spawner"), copyObjects.SpawnGameObjects, parents.SpawnerParent);
                 ResetGameObjects(GameObject.FindGameObjectsWithTag("Danger"), copyObjects.DangerGameObjects, parents.DangerParent);
+            }
+            else if (resetTime > 0)
+            {
+                ResetTextGameObject.SetActive(true);
+                ResetTextGameObject.GetComponent<Text>().color = new Color(1, 1, 1, resetTime / resetTimeMax);
+            }
+
+            if (resetInitiated)
+            {
+                resetTime = 0;
+                resetInitiated = false;
             }
         }
 
