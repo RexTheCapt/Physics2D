@@ -13,10 +13,10 @@ namespace Assets.Scripts
     {
         public KeyCode ResetKeyCode = KeyCode.R;
         public GameObject ResetTextGameObject;
-        public float resetTimeMax = 5f;
+        public float ResetTimeMax = 5f;
 
-        public float resetTime;
-        public bool resetInitiated = false;
+        private float _resetTime;
+        private bool _resetInitiated;
 
         #region Private classes
 
@@ -85,24 +85,24 @@ namespace Assets.Scripts
         {
             if (Input.GetKey(ResetKeyCode))
             {
-                resetTime += Time.deltaTime;
+                _resetTime += Time.deltaTime;
             }
             else
             {
-                resetTime -= Time.deltaTime;
+                _resetTime -= Time.deltaTime;
             }
 
-            if (resetTime < 0)
+            if (_resetTime < 0)
             {
-                resetTime = 0;
+                _resetTime = 0;
                 ResetTextGameObject.SetActive(false);
             }
 
-            if (resetTime > resetTimeMax && !resetInitiated)
+            if (_resetTime > ResetTimeMax && !_resetInitiated)
             {
-                resetTime = resetTimeMax + 0.001f;
+                _resetTime = ResetTimeMax + 0.001f;
 
-                resetInitiated = true;
+                _resetInitiated = true;
 
                 ResetTextGameObject.GetComponent<Text>().color = new Color(1, 0, 0, 1);
 
@@ -110,16 +110,16 @@ namespace Assets.Scripts
                 ResetGameObjects(GameObject.FindGameObjectsWithTag("Spawner"), copyObjects.SpawnGameObjects, parents.SpawnerParent);
                 ResetGameObjects(GameObject.FindGameObjectsWithTag("Danger"), copyObjects.DangerGameObjects, parents.DangerParent);
             }
-            else if (resetTime > 0)
+            else if (_resetTime > 0)
             {
                 ResetTextGameObject.SetActive(true);
-                ResetTextGameObject.GetComponent<Text>().color = new Color(1, 1, 1, resetTime / resetTimeMax);
+                ResetTextGameObject.GetComponent<Text>().color = new Color(1, 1, 1, _resetTime / ResetTimeMax);
             }
 
-            if (resetInitiated)
+            if (_resetInitiated)
             {
-                resetTime = 0;
-                resetInitiated = false;
+                _resetTime = 0;
+                _resetInitiated = false;
             }
         }
 
