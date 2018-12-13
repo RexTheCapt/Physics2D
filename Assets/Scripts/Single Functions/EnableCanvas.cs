@@ -1,13 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿#region usings
+
+using JetBrains.Annotations;
 using UnityEngine;
 
-public class EnableCanvas : MonoBehaviour
-{
-    public GameObject CanvasGameObject;
+#endregion
 
-    void Start()
+namespace Assets.Scripts.Single_Functions
+{
+    public class EnableCanvas : MonoBehaviour
     {
-        CanvasGameObject.SetActive(true);
+        public GameObject CanvasGameObject;
+
+        [UsedImplicitly]
+        private void Start()
+        {
+            CanvasGameObject.SetActive(true);
+        }
     }
 }

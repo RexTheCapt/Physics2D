@@ -3,101 +3,105 @@
 using System;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 #endregion
 
-public class GameControl : MonoBehaviour
+namespace Assets.Scripts
 {
-    public KeyCode ResetKeyCode = KeyCode.R;
-
-    // Parents
-    [Serializable]
-    private class Parents
+    public class GameControl : MonoBehaviour
     {
-        [UsedImplicitly] public Transform BallParent;
-        [UsedImplicitly] public Transform SpawnerParent;
-        [UsedImplicitly] public Transform DangerParent;
-    }
-    [SerializeField]
-    Parents parents = new Parents();
+        public KeyCode ResetKeyCode = KeyCode.R;
 
-    // Object lists
-    [Serializable]
-    private class Objects
-    {
-        [UsedImplicitly] public GameObject[] BallGameObjects;
-        [UsedImplicitly] public GameObject[] SpawnGameObjects;
-        [UsedImplicitly] public GameObject[] DangerGameObjects;
-    }
-    [SerializeField]
-    Objects objects = new Objects();
-
-    // Duplicate objects
-    private class CopyObjects
-    {
-        public GameObject[] _ballGameObjects;
-        public GameObject[] _spawnGameObjects;
-        public GameObject[] _dangerGameObjects;
-    }
-    CopyObjects copyObjects = new CopyObjects();
-
-    private void Start()
-    {
-        copyObjects._ballGameObjects = new GameObject[objects.BallGameObjects.Length];
-        copyObjects._spawnGameObjects = new GameObject[objects.SpawnGameObjects.Length];
-        copyObjects._dangerGameObjects = new GameObject[objects.DangerGameObjects.Length];
-
-        // Copy ball objects
-        for (int i = 0; i < objects.BallGameObjects.Length; i++)
+        // Parents
+        [Serializable]
+        private class Parents
         {
-            copyObjects._ballGameObjects[i] = CreateObject(Instantiate(objects.BallGameObjects[i]), parents.BallParent);
+            [UsedImplicitly] public Transform BallParent;
+            [UsedImplicitly] public Transform SpawnerParent;
+            [UsedImplicitly] public Transform DangerParent;
+        }
+        [SerializeField]
+        Parents parents = new Parents();
+
+        // Object lists
+        [Serializable]
+        private class Objects
+        {
+            [UsedImplicitly] public GameObject[] BallGameObjects;
+            [UsedImplicitly] public GameObject[] SpawnGameObjects;
+            [UsedImplicitly] public GameObject[] DangerGameObjects;
+        }
+        [SerializeField]
+        Objects objects = new Objects();
+
+        // Duplicate objects
+        private class CopyObjects
+        {
+            public GameObject[] BallGameObjects;
+            public GameObject[] SpawnGameObjects;
+            public GameObject[] DangerGameObjects;
+        }
+        CopyObjects copyObjects = new CopyObjects();
+
+        [UsedImplicitly]
+        private void Start()
+        {
+            copyObjects.BallGameObjects = new GameObject[objects.BallGameObjects.Length];
+            copyObjects.SpawnGameObjects = new GameObject[objects.SpawnGameObjects.Length];
+            copyObjects.DangerGameObjects = new GameObject[objects.DangerGameObjects.Length];
+
+            // Copy ball objects
+            for (int i = 0; i < objects.BallGameObjects.Length; i++)
+            {
+                copyObjects.BallGameObjects[i] = CreateObject(Instantiate(objects.BallGameObjects[i]), parents.BallParent);
+            }
+
+            // Copy spawn objects
+            for (int i = 0; i < objects.SpawnGameObjects.Length; i++)
+            {
+                copyObjects.SpawnGameObjects[i] = CreateObject(Instantiate(objects.SpawnGameObjects[i]), parents.SpawnerParent);
+            }
+
+            // Copy danger objects
+            for (int i = 0; i < objects.SpawnGameObjects.Length; i++)
+            {
+                copyObjects.DangerGameObjects[i] = CreateObject(Instantiate(objects.DangerGameObjects[i]), parents.DangerParent);
+            }
         }
 
-        // Copy spawn objects
-        for (int i = 0; i < objects.SpawnGameObjects.Length; i++)
+        // Update is called once per frame
+        [UsedImplicitly]
+        private void Update()
         {
-            copyObjects._spawnGameObjects[i] = CreateObject(Instantiate(objects.SpawnGameObjects[i]), parents.SpawnerParent);
+            if (Input.GetKeyDown(ResetKeyCode))
+            {
+                ResetGameObjects(GameObject.FindGameObjectsWithTag("Ball"), copyObjects.BallGameObjects, parents.BallParent);
+                ResetGameObjects(GameObject.FindGameObjectsWithTag("Spawner"), copyObjects.SpawnGameObjects, parents.SpawnerParent);
+                ResetGameObjects(GameObject.FindGameObjectsWithTag("Danger"), copyObjects.DangerGameObjects, parents.DangerParent);
+            }
         }
 
-        // Copy danger objects
-        for (int i = 0; i < objects.SpawnGameObjects.Length; i++)
+        private GameObject CreateObject(GameObject o, Transform parent)
         {
-            copyObjects._dangerGameObjects[i] = CreateObject(Instantiate(objects.DangerGameObjects[i]), parents.DangerParent);
-        }
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        if (Input.GetKeyDown(ResetKeyCode))
-        {
-            ResetGameObjects(GameObject.FindGameObjectsWithTag("Ball"), copyObjects._ballGameObjects, parents.BallParent);
-            ResetGameObjects(GameObject.FindGameObjectsWithTag("Spawner"), copyObjects._spawnGameObjects, parents.SpawnerParent);
-            ResetGameObjects(GameObject.FindGameObjectsWithTag("Danger"), copyObjects._dangerGameObjects, parents.DangerParent);
-        }
-    }
-
-    private GameObject CreateObject(GameObject o, Transform parent)
-    {
-        o.SetActive(false);
-        o.transform.parent = parent;
-        return o;
-    }
-
-    private void ResetGameObjects(GameObject[] findGameObjectsWithTag, GameObject[] waitingObjects, Transform parent)
-    {
-        foreach (GameObject o in findGameObjectsWithTag)
-        {
-            Destroy(o);
-        }
-
-        foreach (GameObject waitingObject in waitingObjects)
-        {
-            GameObject o = Instantiate(waitingObject);
-
-            o.SetActive(true);
+            o.SetActive(false);
             o.transform.parent = parent;
+            return o;
+        }
+
+        private void ResetGameObjects(GameObject[] findGameObjectsWithTag, GameObject[] waitingObjects, Transform parent)
+        {
+            foreach (GameObject o in findGameObjectsWithTag)
+            {
+                Destroy(o);
+            }
+
+            foreach (GameObject waitingObject in waitingObjects)
+            {
+                GameObject o = Instantiate(waitingObject);
+
+                o.SetActive(true);
+                o.transform.parent = parent;
+            }
         }
     }
 }
