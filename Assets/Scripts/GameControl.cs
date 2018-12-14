@@ -14,6 +14,7 @@ namespace Assets.Scripts
         public KeyCode ResetKeyCode = KeyCode.R;
         public GameObject ResetTextGameObject;
         public float ResetTimeMax = 5f;
+        public bool resetButtonPressed = false;
 
         private float _resetTime;
         private bool _resetInitiated;
@@ -83,7 +84,7 @@ namespace Assets.Scripts
         [UsedImplicitly]
         private void Update()
         {
-            if (Input.GetKey(ResetKeyCode))
+            if (Input.GetKey(ResetKeyCode) || resetButtonPressed)
             {
                 _resetTime += Time.deltaTime;
             }
@@ -100,15 +101,7 @@ namespace Assets.Scripts
 
             if (_resetTime > ResetTimeMax && !_resetInitiated)
             {
-                _resetTime = ResetTimeMax + 0.001f;
-
-                _resetInitiated = true;
-
-                ResetTextGameObject.GetComponent<Text>().color = new Color(1, 0, 0, 1);
-
-                ResetGameObjects(GameObject.FindGameObjectsWithTag("Ball"), copyObjects.BallGameObjects, parents.BallParent);
-                ResetGameObjects(GameObject.FindGameObjectsWithTag("Spawner"), copyObjects.SpawnGameObjects, parents.SpawnerParent);
-                ResetGameObjects(GameObject.FindGameObjectsWithTag("Danger"), copyObjects.DangerGameObjects, parents.DangerParent);
+                ResetGame();
             }
             else if (_resetTime > 0)
             {
@@ -121,6 +114,19 @@ namespace Assets.Scripts
                 _resetTime = 0;
                 _resetInitiated = false;
             }
+        }
+
+        private void ResetGame()
+        {
+            _resetTime = ResetTimeMax + 0.001f;
+
+            _resetInitiated = true;
+
+            ResetTextGameObject.GetComponent<Text>().color = new Color(1, 0, 0, 1);
+
+            ResetGameObjects(GameObject.FindGameObjectsWithTag("Ball"), copyObjects.BallGameObjects, parents.BallParent);
+            ResetGameObjects(GameObject.FindGameObjectsWithTag("Spawner"), copyObjects.SpawnGameObjects, parents.SpawnerParent);
+            ResetGameObjects(GameObject.FindGameObjectsWithTag("Danger"), copyObjects.DangerGameObjects, parents.DangerParent);
         }
 
         private GameObject CreateObject(GameObject o, Transform parent)
@@ -144,6 +150,16 @@ namespace Assets.Scripts
                 o.SetActive(true);
                 o.transform.parent = parent;
             }
+        }
+
+        public void PressResetButton()
+        {
+            resetButtonPressed = true;
+        }
+
+        public void ReleaseResetButton()
+        {
+            resetButtonPressed = false;
         }
     }
 }
