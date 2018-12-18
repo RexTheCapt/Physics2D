@@ -9,12 +9,21 @@ namespace Assets.Scripts.Single_Functions
 {
     public class EnableCanvas : MonoBehaviour
     {
-        public GameObject CanvasGameObject;
+        public GameObject[] EnableOnStartGameObjects;
+        public GameObject[] DisableOnStartGameObjects;
 
         [UsedImplicitly]
         private void Start()
         {
-            CanvasGameObject.SetActive(true);
+            foreach (GameObject canvasGameObject in EnableOnStartGameObjects)
+            {
+                canvasGameObject.SetActive(true);
+            }
+
+            foreach (GameObject canvasGameObject in DisableOnStartGameObjects)
+            {
+                canvasGameObject.SetActive(false);
+            }
         }
     }
 }
