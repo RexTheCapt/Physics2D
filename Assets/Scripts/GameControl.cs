@@ -93,6 +93,14 @@ namespace Assets.Scripts
                 _resetTime -= Time.deltaTime;
             }
 
+            if (_resetTime < 0.1f && Input.GetKeyUp(KeyCode.Escape))
+            {
+                _resetTime = 0;
+                PauseScript ps =gameObject.GetComponent<PauseScript>();
+
+                ps.Toggle();
+            }
+
             if (_resetTime < 0)
             {
                 _resetTime = 0;
