@@ -22,7 +22,6 @@ namespace Assets.Scripts.Single_Functions
         {
             if (RunWhilePaused || Time.timeScale > 0)
             {
-                Debug.Log(gameObject.name);
                 Color color = new Color();
 
                 Renderer renderer = gameObject.GetComponent<Renderer>();

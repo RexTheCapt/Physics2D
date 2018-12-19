@@ -28,6 +28,7 @@ namespace Assets.Scripts
             [UsedImplicitly] public Transform BallParent;
             [UsedImplicitly] public Transform SpawnerParent;
             [UsedImplicitly] public Transform DangerParent;
+            [UsedImplicitly] public Transform GoalParent;
         }
         [SerializeField]
         Parents parents = new Parents();
@@ -39,6 +40,7 @@ namespace Assets.Scripts
             [UsedImplicitly] public GameObject[] BallGameObjects;
             [UsedImplicitly] public GameObject[] SpawnGameObjects;
             [UsedImplicitly] public GameObject[] DangerGameObjects;
+            [UsedImplicitly] public GameObject[] GoalGameObjects;
         }
         [SerializeField]
         Objects objects = new Objects();
@@ -49,8 +51,11 @@ namespace Assets.Scripts
             public GameObject[] BallGameObjects;
             public GameObject[] SpawnGameObjects;
             public GameObject[] DangerGameObjects;
+            public GameObject[] GoalGameObjects;
         }
         CopyObjects copyObjects = new CopyObjects();
+
+        #endregion
 
         [UsedImplicitly]
         private void Start()
@@ -58,27 +63,21 @@ namespace Assets.Scripts
             copyObjects.BallGameObjects = new GameObject[objects.BallGameObjects.Length];
             copyObjects.SpawnGameObjects = new GameObject[objects.SpawnGameObjects.Length];
             copyObjects.DangerGameObjects = new GameObject[objects.DangerGameObjects.Length];
+            copyObjects.GoalGameObjects = new GameObject[objects.GoalGameObjects.Length];
 
-            // Copy ball objects
-            for (int i = 0; i < objects.BallGameObjects.Length; i++)
-            {
-                copyObjects.BallGameObjects[i] = CreateObject(Instantiate(objects.BallGameObjects[i]), parents.BallParent);
-            }
-
-            // Copy spawn objects
-            for (int i = 0; i < objects.SpawnGameObjects.Length; i++)
-            {
-                copyObjects.SpawnGameObjects[i] = CreateObject(Instantiate(objects.SpawnGameObjects[i]), parents.SpawnerParent);
-            }
-
-            // Copy danger objects
-            for (int i = 0; i < objects.SpawnGameObjects.Length; i++)
-            {
-                copyObjects.DangerGameObjects[i] = CreateObject(Instantiate(objects.DangerGameObjects[i]), parents.DangerParent);
-            }
+            CreateCopyList(objects.BallGameObjects, copyObjects.BallGameObjects, parents.BallParent);
+            CreateCopyList(objects.SpawnGameObjects, copyObjects.SpawnGameObjects, parents.SpawnerParent);
+            CreateCopyList(objects.DangerGameObjects, copyObjects.DangerGameObjects, parents.DangerParent);
+            CreateCopyList(objects.GoalGameObjects, copyObjects.GoalGameObjects, parents.GoalParent);
         }
 
-            #endregion
+        private void CreateCopyList(GameObject[] originalGameObjects, GameObject[] copyGameObjects, Transform parent)
+        {
+            for (int i = 0; i < originalGameObjects.Length; i++)
+            {
+                copyGameObjects[i] = CreateObject(Instantiate(originalGameObjects[i]), parent);
+            }
+        }
 
         // Update is called once per frame
         [UsedImplicitly]
@@ -127,6 +126,7 @@ namespace Assets.Scripts
             ResetGameObjects(GameObject.FindGameObjectsWithTag("Ball"), copyObjects.BallGameObjects, parents.BallParent);
             ResetGameObjects(GameObject.FindGameObjectsWithTag("Spawner"), copyObjects.SpawnGameObjects, parents.SpawnerParent);
             ResetGameObjects(GameObject.FindGameObjectsWithTag("Danger"), copyObjects.DangerGameObjects, parents.DangerParent);
+            ResetGameObjects(GameObject.FindGameObjectsWithTag("Finish"), copyObjects.GoalGameObjects, parents.GoalParent);
         }
 
         private GameObject CreateObject(GameObject o, Transform parent)
