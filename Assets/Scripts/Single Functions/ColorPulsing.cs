@@ -2,6 +2,7 @@
 
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
 
 #endregion
 
@@ -10,6 +11,7 @@ namespace Assets.Scripts.Single_Functions
     public class ColorPulsing : MonoBehaviour
     {
         private bool _fadeUp = true;
+        public bool RunWhilePaused = false;
         public float Timer;
         public float TimerMin = 0f;
         public float TimerMid = -1f;
@@ -18,12 +20,25 @@ namespace Assets.Scripts.Single_Functions
         [UsedImplicitly]
         void Update()
         {
-            Color color = gameObject.GetComponent<Renderer>().material.color;
+            Color color = new Color();
 
-            if (_fadeUp)
+            Renderer renderer = gameObject.GetComponent<Renderer>();
+            Image image = gameObject.GetComponent<Image>();
+
+            if (renderer)
+                color = renderer.material.color;
+            else if (image)
+                color = image.color;
+
+            if (_fadeUp && !RunWhilePaused)
                 Timer += Time.deltaTime;
             else
                 Timer -= Time.deltaTime;
+
+            if (_fadeUp && RunWhilePaused)
+                Timer += Time.fixedDeltaTime;
+            else
+                Timer -= Time.fixedDeltaTime;
 
             if (TimerMid > TimerMin && Timer > TimerMin)
             {
@@ -37,7 +52,18 @@ namespace Assets.Scripts.Single_Functions
 
             color.a = Timer / TimerMax;
 
-            gameObject.GetComponent<Renderer>().material.color = color;
+            if (renderer)
+                renderer.material.color = color;
+            else if (image)
+                image.color = color;
+        }
+
+        protected virtual void FixedUpdate()
+        {
+            if (RunWhilePaused)
+            {
+                Update();
+            }
         }
     }
 }
