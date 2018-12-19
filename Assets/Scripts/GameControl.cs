@@ -1,6 +1,7 @@
 ﻿#region usings
 
 using System;
+using Assets.Scripts.Single_Functions;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,8 +17,19 @@ namespace Assets.Scripts
         public float ResetTimeMax = 5f;
         public bool resetButtonPressed = false;
 
+        public bool EditGame
+        {
+            set
+            {
+                _EditGame = value;
+                ResetGame();
+            }
+            get { return _EditGame; }
+        }
+
         private float _resetTime;
         private bool _resetInitiated;
+        private bool _EditGame = false;
 
         #region Private classes
 
@@ -149,6 +161,20 @@ namespace Assets.Scripts
 
                 o.SetActive(true);
                 o.transform.parent = parent;
+
+                if (_EditGame && o.activeInHierarchy)
+                {
+                    if (o.GetComponent<SpawnerScript>())
+                        o.GetComponent<SpawnerScript>().enabled = false;
+                    if (o.GetComponent<DangerScript>())
+                        o.GetComponent<DangerScript>().enabled = false;
+                    if (o.GetComponent<Rigidbody>())
+                        o.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                    if (o.GetComponent<MouseDrag>())
+                        o.GetComponent<MouseDrag>().enabled = false;
+                    if (o.GetComponent<GoalScript>())
+                        o.GetComponent<GoalScript>().enabled = false;
+                }
             }
         }
 
