@@ -12,14 +12,38 @@ namespace Assets.Scripts.Single_Functions
         // ReSharper disable once MemberCanBePrivate.Global
         [UsedImplicitly] public Transform TargetTransform;
         [UsedImplicitly] public GameObject RotatoryGameObject;
-        public bool Active = false;
+
+        public bool Active
+        {
+            private get { return _active; }
+            set {
+                if (!gameControl.EditGame)
+                {
+                    _active = false;
+                }
+                else
+                {
+                    _active = value;
+                }
+            }
+        }
+
+        private bool _active;
+
+        private GameControl gameControl;
+
+        void Start()
+        {
+            gameControl = GameObject.Find("Game").GetComponent<GameControl>();
+            Active = Active;
+        }
 
         [UsedImplicitly]
         void Update()
         {
             transform.LookAt(TargetTransform);
-
-            RotatoryGameObject.SetActive(Active);
+            
+            RotatoryGameObject.SetActive(_active);
         }
     }
 }
