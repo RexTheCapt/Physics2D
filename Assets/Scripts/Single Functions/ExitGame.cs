@@ -21,12 +21,12 @@ namespace Assets.Scripts.Single_Functions
         }
 
         [UsedImplicitly]
-        private void Update()
+        protected virtual void Update()
         {
             if (Input.GetKey(KeyCode.Escape))
-                _timer += Time.deltaTime;
+                _timer += Time.fixedDeltaTime;
             else
-                _timer -= Time.deltaTime;
+                _timer -= Time.fixedDeltaTime;
 
             if (_timer < 0.1f && Input.GetKeyUp(KeyCode.Escape))
             {
