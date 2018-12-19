@@ -1,6 +1,7 @@
 ﻿#region usings
 
 using UnityEngine;
+using UnityEngine.UI;
 
 #endregion
 
@@ -8,6 +9,8 @@ public class PauseScript : MonoBehaviour
 {
     public GameObject[] PauseGameObjects;
     public GameObject[] PlayGameObjects;
+    public GameObject SimulationTextGameObject;
+    public Slider SimulationSpeedSlider;
     public float SimulationSpeed = 1f;
 
     public bool GamePaused { get; private set; }
@@ -28,6 +31,14 @@ public class PauseScript : MonoBehaviour
             PlayGame();
         else
             PauseGame();
+    }
+
+    public void SimulationSpeedSliderUpdate()
+    {
+        SimulationSpeed = SimulationSpeedSlider.value;
+
+        SimulationTextGameObject.gameObject.GetComponent<Text>().text =
+            string.Format("Game speed: {0:0.00}", SimulationSpeed);
     }
 
     private void PauseGame()
