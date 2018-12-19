@@ -13,7 +13,7 @@ namespace Assets.Scripts.Single_Functions
         public float ExitTime = 5f;
         public Text QuitText;
         private float _timer;
-        private bool ExitButtonPressed;
+        private bool _exitButtonPressed;
 
         [UsedImplicitly]
         private void Start()
@@ -24,7 +24,7 @@ namespace Assets.Scripts.Single_Functions
         [UsedImplicitly]
         protected virtual void Update()
         {
-            if (Input.GetKey(KeyCode.Escape) || ExitButtonPressed)
+            if (Input.GetKey(KeyCode.Escape) || _exitButtonPressed)
                 _timer += Time.fixedDeltaTime;
             else
                 _timer -= Time.fixedDeltaTime;
@@ -57,12 +57,12 @@ namespace Assets.Scripts.Single_Functions
 
         public void PressExitButton()
         {
-            ExitButtonPressed = true;
+            _exitButtonPressed = true;
         }
 
         public void ReleaseExitButton()
         {
-            ExitButtonPressed = false;
+            _exitButtonPressed = false;
         }
     }
 }

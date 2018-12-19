@@ -17,7 +17,7 @@ namespace Assets.Scripts.Single_Functions
         {
             private get { return _active; }
             set {
-                if (!gameControl.EditGame)
+                if (!_gameControl.EditGame)
                 {
                     _active = false;
                 }
@@ -30,11 +30,12 @@ namespace Assets.Scripts.Single_Functions
 
         private bool _active;
 
-        private GameControl gameControl;
+        private GameControl _gameControl;
 
+        [UsedImplicitly]
         void Start()
         {
-            gameControl = GameObject.Find("Game").GetComponent<GameControl>();
+            _gameControl = GameObject.Find("Game").GetComponent<GameControl>();
             Active = Active;
         }
 

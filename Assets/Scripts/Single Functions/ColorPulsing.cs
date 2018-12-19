@@ -24,11 +24,11 @@ namespace Assets.Scripts.Single_Functions
             {
                 Color color = new Color();
 
-                Renderer renderer = gameObject.GetComponent<Renderer>();
+                Renderer render = gameObject.GetComponent<Renderer>();
                 Image image = gameObject.GetComponent<Image>();
 
-                if (renderer)
-                    color = renderer.material.color;
+                if (render)
+                    color = render.material.color;
                 else if (image)
                     color = image.color;
 
@@ -49,8 +49,8 @@ namespace Assets.Scripts.Single_Functions
 
                 color.a = Timer / TimerMax;
 
-                if (renderer)
-                    renderer.material.color = color;
+                if (render)
+                    render.material.color = color;
                 else if (image)
                     image.color = color;
             }

@@ -15,21 +15,21 @@ namespace Assets.Scripts
         public KeyCode ResetKeyCode = KeyCode.R;
         public GameObject ResetTextGameObject;
         public float ResetTimeMax = 5f;
-        public bool resetButtonPressed = false;
+        public bool ResetButtonPressed;
 
         public bool EditGame
         {
             set
             {
-                _EditGame = value;
+                _editGame = value;
                 ResetGame();
             }
-            get { return _EditGame; }
+            get { return _editGame; }
         }
 
         private float _resetTime;
         private bool _resetInitiated;
-        private bool _EditGame = false;
+        private bool _editGame;
 
         #region Private classes
 
@@ -95,7 +95,7 @@ namespace Assets.Scripts
         [UsedImplicitly]
         protected virtual void Update()
         {
-            if (Input.GetKey(ResetKeyCode) || resetButtonPressed)
+            if (Input.GetKey(ResetKeyCode) || ResetButtonPressed)
             {
                 _resetTime += Time.fixedDeltaTime;
             }
@@ -162,7 +162,7 @@ namespace Assets.Scripts
                 o.SetActive(true);
                 o.transform.parent = parent;
 
-                if (_EditGame && o.activeInHierarchy)
+                if (_editGame && o.activeInHierarchy)
                 {
                     if (o.GetComponent<SpawnerScript>())
                         o.GetComponent<SpawnerScript>().enabled = false;
@@ -180,12 +180,12 @@ namespace Assets.Scripts
 
         public void PressResetButton()
         {
-            resetButtonPressed = true;
+            ResetButtonPressed = true;
         }
 
         public void ReleaseResetButton()
         {
-            resetButtonPressed = false;
+            ResetButtonPressed = false;
         }
     }
 }

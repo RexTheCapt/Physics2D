@@ -1,83 +1,87 @@
 ﻿#region usings
 
-using Assets.Scripts;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
 #endregion
 
-public class PauseScript : MonoBehaviour
+namespace Assets.Scripts
 {
-    public GameObject[] PauseGameObjects;
-    public GameObject[] PlayGameObjects;
-    public GameObject SimulationTextGameObject;
-    public Slider SimulationSpeedSlider;
-    public float SimulationSpeed = 1f;
-
-    public bool GamePaused { get; private set; }
-
-    void Update()
+    public class PauseScript : MonoBehaviour
     {
-        if(GamePaused)
-            PauseGame();
-        else
-            PlayGame();
-    }
+        public GameObject[] PauseGameObjects;
+        public GameObject[] PlayGameObjects;
+        public GameObject SimulationTextGameObject;
+        public Slider SimulationSpeedSlider;
+        public float SimulationSpeed = 1f;
 
-    public void Toggle()
-    {
-        GamePaused = !GamePaused;
+        public bool GamePaused { get; private set; }
 
-        if (!GamePaused)
-            PlayGame();
-        else
-            PauseGame();
-    }
+        [UsedImplicitly]
+        void Update()
+        {
+            if(GamePaused)
+                PauseGame();
+            else
+                PlayGame();
+        }
 
-    public void SimulationSpeedSliderUpdate()
-    {
-        SimulationSpeed = SimulationSpeedSlider.value;
+        public void Toggle()
+        {
+            GamePaused = !GamePaused;
 
-        SimulationTextGameObject.gameObject.GetComponent<Text>().text =
-            string.Format("Game speed: {0:0.00}", SimulationSpeed);
-    }
+            if (!GamePaused)
+                PlayGame();
+            else
+                PauseGame();
+        }
 
-    public void EditGame()
-    {
-        GameObject game = GameObject.Find("Game");
-        GameControl gameControl = game.GetComponent<GameControl>();
+        public void SimulationSpeedSliderUpdate()
+        {
+            SimulationSpeed = SimulationSpeedSlider.value;
 
-        gameControl.EditGame = true;
+            SimulationTextGameObject.gameObject.GetComponent<Text>().text =
+                string.Format("Game speed: {0:0.00}", SimulationSpeed);
+        }
 
-        Toggle();
-    }
+        public void EditGame()
+        {
+            GameObject game = GameObject.Find("Game");
+            GameControl gameControl = game.GetComponent<GameControl>();
 
-    public void StartGame()
-    {
-        GameObject game = GameObject.Find("Game");
-        GameControl gameControl = game.GetComponent<GameControl>();
+            gameControl.EditGame = true;
 
-        gameControl.EditGame = false;
+            Toggle();
+        }
 
-        Toggle();
-    }
+        public void StartGame()
+        {
+            GameObject game = GameObject.Find("Game");
+            GameControl gameControl = game.GetComponent<GameControl>();
 
-    private void PauseGame()
-    {
-        Time.timeScale = 0;
-        SetObjectState(GamePaused);
-    }
+            gameControl.EditGame = false;
 
-    private void PlayGame()
-    {
-        Time.timeScale = SimulationSpeed;
-        SetObjectState(GamePaused);
-    }
+            Toggle();
+        }
 
-    private void SetObjectState(bool pause)
-    {
-        foreach (var o in PauseGameObjects) o.SetActive(pause);
+        private void PauseGame()
+        {
+            Time.timeScale = 0;
+            SetObjectState(GamePaused);
+        }
 
-        foreach (var o in PlayGameObjects) o.SetActive(!pause);
+        private void PlayGame()
+        {
+            Time.timeScale = SimulationSpeed;
+            SetObjectState(GamePaused);
+        }
+
+        private void SetObjectState(bool pause)
+        {
+            foreach (var o in PauseGameObjects) o.SetActive(pause);
+
+            foreach (var o in PlayGameObjects) o.SetActive(!pause);
+        }
     }
 }
