@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0df21a6383a1a848a22e71faa8570fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExitTime: 5
+  ExitTime: 1
   QuitText: {fileID: 271096880}
 --- !u!114 &1182389144
 MonoBehaviour:
@@ -703,6 +703,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15efbc3a33b7ff347a22786d62066d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseGameObjects:
+  - {fileID: 1859577210}
+  PlayGameObjects:
+  - {fileID: 888430046}
 --- !u!1001 &1251922830
 Prefab:
   m_ObjectHideFlags: 0
