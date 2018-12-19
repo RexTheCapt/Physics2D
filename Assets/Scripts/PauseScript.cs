@@ -1,5 +1,6 @@
 ﻿#region usings
 
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +40,26 @@ public class PauseScript : MonoBehaviour
 
         SimulationTextGameObject.gameObject.GetComponent<Text>().text =
             string.Format("Game speed: {0:0.00}", SimulationSpeed);
+    }
+
+    public void EditGame()
+    {
+        GameObject game = GameObject.Find("Game");
+        GameControl gameControl = game.GetComponent<GameControl>();
+
+        gameControl.EditGame = true;
+
+        Toggle();
+    }
+
+    public void StartGame()
+    {
+        GameObject game = GameObject.Find("Game");
+        GameControl gameControl = game.GetComponent<GameControl>();
+
+        gameControl.EditGame = false;
+
+        Toggle();
     }
 
     private void PauseGame()
