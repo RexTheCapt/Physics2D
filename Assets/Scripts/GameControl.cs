@@ -82,15 +82,15 @@ namespace Assets.Scripts
 
         // Update is called once per frame
         [UsedImplicitly]
-        private void Update()
+        protected virtual void Update()
         {
             if (Input.GetKey(ResetKeyCode) || resetButtonPressed)
             {
-                _resetTime += Time.deltaTime;
+                _resetTime += Time.fixedDeltaTime;
             }
             else
             {
-                _resetTime -= Time.deltaTime;
+                _resetTime -= Time.fixedDeltaTime;
             }
 
             if (_resetTime < 0)
