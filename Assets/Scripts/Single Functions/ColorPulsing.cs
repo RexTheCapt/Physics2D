@@ -20,49 +20,40 @@ namespace Assets.Scripts.Single_Functions
         [UsedImplicitly]
         void Update()
         {
-            Color color = new Color();
-
-            Renderer renderer = gameObject.GetComponent<Renderer>();
-            Image image = gameObject.GetComponent<Image>();
-
-            if (renderer)
-                color = renderer.material.color;
-            else if (image)
-                color = image.color;
-
-            if (_fadeUp && !RunWhilePaused)
-                Timer += Time.deltaTime;
-            else
-                Timer -= Time.deltaTime;
-
-            if (_fadeUp && RunWhilePaused)
-                Timer += Time.fixedDeltaTime;
-            else
-                Timer -= Time.fixedDeltaTime;
-
-            if (TimerMid > TimerMin && Timer > TimerMin)
+            if (RunWhilePaused || Time.timeScale > 0)
             {
-                if (Timer > TimerMid)
+                Debug.Log(gameObject.name);
+                Color color = new Color();
+
+                Renderer renderer = gameObject.GetComponent<Renderer>();
+                Image image = gameObject.GetComponent<Image>();
+
+                if (renderer)
+                    color = renderer.material.color;
+                else if (image)
+                    color = image.color;
+
+                if (_fadeUp)
+                    Timer += Time.fixedDeltaTime;
+                else
+                    Timer -= Time.fixedDeltaTime;
+
+                if (TimerMid > TimerMin && Timer > TimerMin)
+                {
+                    if (Timer > TimerMid)
+                        _fadeUp = false;
+                }
+                else if (Timer > TimerMax)
                     _fadeUp = false;
-            }
-            else if (Timer > TimerMax)
-                _fadeUp = false;
-            else if (Timer < TimerMin)
-                _fadeUp = true;
+                else if (Timer < TimerMin)
+                    _fadeUp = true;
 
-            color.a = Timer / TimerMax;
+                color.a = Timer / TimerMax;
 
-            if (renderer)
-                renderer.material.color = color;
-            else if (image)
-                image.color = color;
-        }
-
-        protected virtual void FixedUpdate()
-        {
-            if (RunWhilePaused)
-            {
-                Update();
+                if (renderer)
+                    renderer.material.color = color;
+                else if (image)
+                    image.color = color;
             }
         }
     }
