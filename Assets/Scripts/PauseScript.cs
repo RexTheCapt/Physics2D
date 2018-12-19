@@ -6,19 +6,35 @@ using UnityEngine;
 
 public class PauseScript : MonoBehaviour
 {
-    public GameObject[] PlayGameObjects;
     public GameObject[] PauseGameObjects;
-    public bool GamePaused
-    {
-        get { return pause; }
-    }
+    public GameObject[] PlayGameObjects;
 
-    private bool pause;
+    public bool GamePaused { get; private set; }
 
     public void Toggle()
     {
-        pause = !pause;
+        GamePaused = !GamePaused;
 
+        if (!GamePaused)
+            PlayGame();
+        else
+            PauseGame();
+    }
 
+    private void PauseGame()
+    {
+        SetObjectState(GamePaused);
+    }
+
+    private void PlayGame()
+    {
+        SetObjectState(GamePaused);
+    }
+
+    private void SetObjectState(bool pause)
+    {
+        foreach (var o in PauseGameObjects) o.SetActive(pause);
+
+        foreach (var o in PlayGameObjects) o.SetActive(!pause);
     }
 }
