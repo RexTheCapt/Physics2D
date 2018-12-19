@@ -8,6 +8,7 @@ public class PauseScript : MonoBehaviour
 {
     public GameObject[] PauseGameObjects;
     public GameObject[] PlayGameObjects;
+    public float SimulationSpeed = 1f;
 
     public bool GamePaused { get; private set; }
 
@@ -37,7 +38,7 @@ public class PauseScript : MonoBehaviour
 
     private void PlayGame()
     {
-        Time.timeScale = 1;
+        Time.timeScale = SimulationSpeed;
         SetObjectState(GamePaused);
     }
 
