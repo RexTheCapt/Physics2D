@@ -28,6 +28,14 @@ namespace Assets.Scripts.Single_Functions
             else
                 _timer -= Time.deltaTime;
 
+            if (_timer < 0.1f && Input.GetKeyUp(KeyCode.Escape))
+            {
+                _timer = 0;
+                PauseScript ps = gameObject.GetComponent<PauseScript>();
+
+                ps.Toggle();
+            }
+
             if (_timer > ExitTime)
             {
                 _timer = ExitTime;
