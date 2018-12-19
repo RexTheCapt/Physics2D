@@ -11,6 +11,14 @@ public class PauseScript : MonoBehaviour
 
     public bool GamePaused { get; private set; }
 
+    void Update()
+    {
+        if(GamePaused)
+            PauseGame();
+        else
+            PlayGame();
+    }
+
     public void Toggle()
     {
         GamePaused = !GamePaused;
@@ -23,11 +31,13 @@ public class PauseScript : MonoBehaviour
 
     private void PauseGame()
     {
+        Time.timeScale = 0;
         SetObjectState(GamePaused);
     }
 
     private void PlayGame()
     {
+        Time.timeScale = 1;
         SetObjectState(GamePaused);
     }
 
